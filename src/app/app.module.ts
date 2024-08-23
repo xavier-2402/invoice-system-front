@@ -29,6 +29,10 @@ import { CustomersComponent } from './components/customers/customers.component';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
+import { NzModalModule } from 'ng-zorro-antd/modal';
+import { NzFormModule } from 'ng-zorro-antd/form';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NzMessageModule } from 'ng-zorro-antd/message';
 
 registerLocaleData(es);
 registerLocaleData(localeEs, 'es');
@@ -57,7 +61,12 @@ registerLocaleData(localeEs, 'es');
     HttpClientModule,
     NzTableModule,
     NzDropDownModule,
-    NzPageHeaderModule
+    NzPageHeaderModule,
+    NzModalModule,
+    NzFormModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NzMessageModule
   ],
   providers: [
     { provide: NZ_I18N, useValue: es_ES },

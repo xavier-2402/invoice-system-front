@@ -1,8 +1,8 @@
-<nz-page-header nzBackIcon [nzGhost]="false">
+<nz-page-header [nzGhost]="false">
     <nz-page-header-title>Usuarios</nz-page-header-title>
     <nz-page-header-extra>
       <nz-space>
-        <button *nzSpaceItem nz-button> <span nz-icon nzType="plus-circle"></span> Agregar</button>
+        <button *nzSpaceItem nz-button (click)="openAdd()"> <span nz-icon nzType="plus-circle"></span>  Agregar</button>
       </nz-space>
     </nz-page-header-extra>
   </nz-page-header>
@@ -32,10 +32,10 @@
               <nz-dropdown-menu #menu="nzDropdownMenu">
                 <ul nz-menu>
                   <li nz-menu-item>
-                    <a> <span nz-icon nzType="edit"></span> Actualizar</a>
+                    <a (click)="editUser(data)"> <span nz-icon nzType="edit"></span> Actualizar</a>
                   </li>
                   <li nz-menu-item>
-                    <a class="delete"><span nz-icon nzType="delete"></span> Eliminar</a>
+                    <a class="delete" (click)="deleteUser(data.userId)"><span nz-icon nzType="delete"></span> Eliminar</a>
                   </li>
                 </ul>
               </nz-dropdown-menu>
@@ -43,3 +43,68 @@
           </tr>
     </tbody>
   </nz-table>
+
+  <nz-modal [(nzVisible)]="showModal" nzTitle="Usuario" (nzOnCancel)="close()" (nzOnOk)="Ok()">
+    <ng-container *nzModalContent>
+        <form nz-form [formGroup]="form">
+            <nz-row [nzGutter]="[12,12]">
+                <nz-col nzMd="12" nzXs="24">
+                    <nz-form-item>
+                        <nz-form-label [nzSpan]="24" nzRequired>Identificación</nz-form-label>
+                        <nz-form-control nzErrorTip="Ingrese un valor válido">
+                          <input nz-input formControlName="dni" class="input">
+                        </nz-form-control>
+                    </nz-form-item >
+                </nz-col>
+                <nz-col nzMd="12" nzXs="24">
+                    <nz-form-item>
+                        <nz-form-label [nzSpan]="24" nzRequired>Nombre</nz-form-label>
+                        <nz-form-control nzErrorTip="Ingrese un valor válido">
+                          <input nz-input  formControlName="firstName" class="input">
+                        </nz-form-control>
+                    </nz-form-item >
+                </nz-col>
+                <nz-col nzMd="12" nzXs="24">
+                    <nz-form-item>
+                        <nz-form-label [nzSpan]="24" nzRequired>Apellido</nz-form-label>
+                        <nz-form-control nzErrorTip="Ingrese un valor válido">
+                          <input nz-input formControlName="lastName"  class="input">
+                        </nz-form-control>
+                    </nz-form-item >
+                </nz-col>
+                <nz-col nzMd="12" nzXs="24">
+                    <nz-form-item>
+                        <nz-form-label [nzSpan]="24" nzRequired>Nombre de usuario</nz-form-label>
+                        <nz-form-control nzErrorTip="Ingrese un valor válido">
+                          <input nz-input formControlName="username"  class="input">
+                        </nz-form-control>
+                    </nz-form-item >
+                </nz-col>
+                <nz-col nzMd="12" nzXs="24">
+                    <nz-form-item>
+                        <nz-form-label [nzSpan]="24" nzRequired>Contraseña</nz-form-label>
+                        <nz-form-control nzErrorTip="Ingrese un valor válido">
+                          <input nz-input formControlName="password"  class="input">
+                        </nz-form-control>
+                    </nz-form-item >
+                </nz-col>
+                <nz-col nzMd="12" nzXs="24">
+                    <nz-form-item>
+                        <nz-form-label [nzSpan]="24" nzFor="email">Correo</nz-form-label>
+                        <nz-form-control nzErrorTip="Ingrese un valor válido">
+                          <input nz-input  formControlName="email" class="input">
+                        </nz-form-control>
+                    </nz-form-item >
+                </nz-col>
+                <nz-col nzMd="12" nzXs="24">
+                    <nz-form-item>
+                        <nz-form-label [nzSpan]="24" nzFor="email">Telefono</nz-form-label>
+                        <nz-form-control nzErrorTip="Ingrese un valor válido">
+                          <input nz-input formControlName="telephone"  class="input">
+                        </nz-form-control>
+                    </nz-form-item >
+                </nz-col>
+            </nz-row>
+          </form>
+    </ng-container>
+  </nz-modal>
