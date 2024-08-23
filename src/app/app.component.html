@@ -1,0 +1,59 @@
+<nz-layout style="height: 100%;" *ngIf="!isLoading">
+  <nz-sider id="style-7" nzCollapsible [(nzCollapsed)]="isCollapsed" [nzTrigger]="null">
+    <div class="logo">
+      <img class="image-resize" [src]="menuImage?menuImage:''">
+    </div>
+    <button nz-button nzType="primary" (click)="toggleCollapsed()">
+      <span nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'" nzTheme="outline"></span>
+    </button>
+    <nz-divider style="margin: 1px;color: gray;border: 1px solid;"></nz-divider>
+    <ul nz-menu nzMode="inline" nzTheme="dark" [nzInlineCollapsed]="isCollapsed">
+      <li
+        nz-menu-item
+        nz-tooltip
+        nzTooltipPlacement="right"
+        [nzTooltipTitle]="isCollapsed ? 'Productos' : ''"
+        routerLink="/products"
+      >
+        <span nz-icon nzType="shopping" nzTheme="outline"></span>
+        <span>Productos</span>
+      </li>
+      <li
+        nz-menu-item
+        nz-tooltip
+        nzTooltipPlacement="right"
+        [nzTooltipTitle]="isCollapsed ? 'Clientes' : ''"
+        routerLink="/customers"
+      >
+        <span nz-icon nzType="user"></span>
+        <span>Clientes</span>
+      </li>
+      <li
+        nz-menu-item
+        nz-tooltip
+        nzTooltipPlacement="right"
+        [nzTooltipTitle]="isCollapsed ? 'Reporte' : ''"
+        routerLink="/report"
+      >
+        <span nz-icon nzType="rise"></span>
+        <span>Reporte</span>
+      </li>
+      <li nz-submenu nzTitle="Configuración" nzIcon="setting">
+        <ul>
+          <li nz-menu-item  routerLink="/users">Usuarios </li>
+        </ul>
+      </li>
+    </ul>
+
+  </nz-sider>
+  <nz-layout>
+    <nz-header [ngClass]="{'navbar-200':!isCollapsed,'navbar-83':isCollapsed}">
+
+    </nz-header>
+    <nz-content id="style-7" class="uc-content">
+      <div class="inner-content">
+        <router-outlet></router-outlet>
+      </div>
+    </nz-content>
+  </nz-layout>
+</nz-layout>
