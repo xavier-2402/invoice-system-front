@@ -1,1 +1,45 @@
-<p>users works!</p>
+<nz-page-header nzBackIcon [nzGhost]="false">
+    <nz-page-header-title>Usuarios</nz-page-header-title>
+    <nz-page-header-extra>
+      <nz-space>
+        <button *nzSpaceItem nz-button> <span nz-icon nzType="plus-circle"></span> Agregar</button>
+      </nz-space>
+    </nz-page-header-extra>
+  </nz-page-header>
+
+
+<nz-table #table [nzData]="users">
+    <thead>
+      <tr>
+        <th>Identificación</th>
+        <th>Nombre</th>
+        <th>Usuario</th>
+        <th>Correo</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of table.data">
+            <td>{{ data.person?.dni ?? '' }}</td>
+            <td>{{ data.person?.firstName ?? ' '}} {{ data.person?.lastName ?? ' '}} </td>
+            <td>{{ data.username }}</td>
+            <td>{{ data.person?.email ?? '' }}</td>
+            <td>
+                <button nz-button nz-dropdown nzType="text" [nzDropdownMenu]="menu">
+                    <span nz-icon nzType="dash"></span>
+                  </button>
+
+              <nz-dropdown-menu #menu="nzDropdownMenu">
+                <ul nz-menu>
+                  <li nz-menu-item>
+                    <a> <span nz-icon nzType="edit"></span> Actualizar</a>
+                  </li>
+                  <li nz-menu-item>
+                    <a class="delete"><span nz-icon nzType="delete"></span> Eliminar</a>
+                  </li>
+                </ul>
+              </nz-dropdown-menu>
+            </td>
+          </tr>
+    </tbody>
+  </nz-table>

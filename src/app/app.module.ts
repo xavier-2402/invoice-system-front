@@ -21,11 +21,14 @@ import { NZ_I18N } from 'ng-zorro-antd/i18n';
 import { es_ES } from 'ng-zorro-antd/i18n';
 import { registerLocaleData } from '@angular/common';
 import { InterceptorService } from './core/interceptor.service';
-import { MenuFoldOutline, MenuUnfoldOutline, UserOutline,RiseOutline, ShoppingOutline, SettingOutline } from '@ant-design/icons-angular/icons';
+import { MenuFoldOutline, MenuUnfoldOutline, UserOutline,RiseOutline, ShoppingOutline, SettingOutline, DashOutline, PlusCircleOutline } from '@ant-design/icons-angular/icons';
 import { NZ_ICONS } from 'ng-zorro-antd/icon';
 import { UsersComponent } from './components/users/users.component';
 import { ReportComponent } from './components/report/report.component';
 import { CustomersComponent } from './components/customers/customers.component';
+import { NzTableModule } from 'ng-zorro-antd/table';
+import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
+import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
 
 registerLocaleData(es);
 registerLocaleData(localeEs, 'es');
@@ -51,13 +54,18 @@ registerLocaleData(localeEs, 'es');
     NzToolTipModule,
     NzMenuModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    NzTableModule,
+    NzDropDownModule,
+    NzPageHeaderModule
   ],
   providers: [
     { provide: NZ_I18N, useValue: es_ES },
     { provide: LOCALE_ID, useValue: 'es' },
     { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true },
-    { provide: NZ_ICONS, useValue: [MenuFoldOutline,MenuUnfoldOutline, UserOutline,RiseOutline, ShoppingOutline, SettingOutline] }
+    { provide: NZ_ICONS, useValue: [MenuFoldOutline,MenuUnfoldOutline, UserOutline,RiseOutline, ShoppingOutline, SettingOutline, DashOutline,
+      PlusCircleOutline
+    ] }
   ],
   bootstrap: [AppComponent]
 })
