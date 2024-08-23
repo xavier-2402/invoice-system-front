@@ -1,1 +1,12 @@
-<p>report works!</p>
+<nz-card [nzTitle]="'Productos mas vendidos'">
+    <div style="text-align:center">
+        <apx-chart
+          [series]="chartOptions.series"
+          [chart]="chartOptions.chart"
+          [xaxis]="chartOptions.xaxis"
+          [title]="chartOptions.title"
+          [plotOptions]="chartOptions.options"
+          [stroke]="chartOptions.stroke"
+        ></apx-chart>
+      </div>
+</nz-card>

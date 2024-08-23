@@ -35,6 +35,8 @@ import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NzMessageModule } from 'ng-zorro-antd/message';
+import { NzCardModule } from 'ng-zorro-antd/card';
+import { NgApexchartsModule } from 'ng-apexcharts';
 
 registerLocaleData(es);
 registerLocaleData(localeEs, 'es');
@@ -68,7 +70,9 @@ registerLocaleData(localeEs, 'es');
     NzFormModule,
     FormsModule,
     ReactiveFormsModule,
-    NzMessageModule
+    NzMessageModule,
+    NzCardModule,
+    NgApexchartsModule
   ],
   providers: [
     { provide: NZ_I18N, useValue: es_ES },
