@@ -1,1 +1,34 @@
-<p>products works!</p>
+<nz-page-header [nzGhost]="false">
+    <nz-page-header-title>Productos</nz-page-header-title>
+    <nz-page-header-extra>
+      <!-- <nz-space>
+        <button *nzSpaceItem nz-button (click)="openAdd()"> <span nz-icon nzType="plus-circle"></span>  Agregar</button>
+      </nz-space> -->
+    </nz-page-header-extra>
+  </nz-page-header>
+
+
+<nz-table #table [nzData]="products" nzSize="small">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Precio</th>
+        <th>Proveedor</th>
+        <th>Cantidad vendida</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of table.data">
+            <td>{{ data.name ?? '' | uppercase}}</td>
+            <td>$ {{ data.unitPrice ?? ''}} </td>
+            <td>{{ data.supplier?.name }}</td>
+            <td>{{ data.sales }} items</td>
+            <td>
+                <button nz-button nz-dropdown nzType="primary" nzSize="small" nz-tooltip="Vender" (click)="updateSale(data.productId)">
+                    <span nz-icon nzType="plus"></span>
+                </button>
+            </td>
+          </tr>
+    </tbody>
+  </nz-table>
