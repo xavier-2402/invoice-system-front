@@ -1,9 +1,9 @@
 <nz-page-header [nzGhost]="false">
     <nz-page-header-title>Productos</nz-page-header-title>
     <nz-page-header-extra>
-      <!-- <nz-space>
+      <nz-space>
         <button *nzSpaceItem nz-button (click)="openAdd()"> <span nz-icon nzType="plus-circle"></span>  Agregar</button>
-      </nz-space> -->
+      </nz-space>
     </nz-page-header-extra>
   </nz-page-header>
 
@@ -25,10 +25,55 @@
             <td>{{ data.supplier?.name }}</td>
             <td>{{ data.sales }} items</td>
             <td>
-                <button nz-button nz-dropdown nzType="primary" nzSize="small" nz-tooltip="Vender" (click)="updateSale(data.productId)">
-                    <span nz-icon nzType="plus"></span>
-                </button>
+                <nz-row [nzGutter]="[12,12]">
+                  <nz-col>
+                    <button nz-button nz-dropdown nzType="primary" nzSize="small" nz-tooltip="Vender" (click)="updateSale(data.productId)">
+                      <span nz-icon nzType="plus"></span>
+                    </button>
+                  </nz-col>
+                  <nz-col>
+                    <button nz-button nz-dropdown nzSize="small" nz-tooltip="Editar" (click)="openEdit(data)">
+                      <span nz-icon nzType="edit"></span>
+                    </button>
+                  </nz-col>
+                </nz-row>
             </td>
           </tr>
     </tbody>
   </nz-table>
+
+  <nz-modal [(nzVisible)]="showModal" nzTitle="Usuario" (nzOnCancel)="close()" (nzOnOk)="Ok()">
+    <ng-container *nzModalContent>
+        <form nz-form [formGroup]="form">
+            <nz-row [nzGutter]="[12,12]">
+                <nz-col nzMd="12" nzXs="24">
+                    <nz-form-item>
+                        <nz-form-label [nzSpan]="24" nzRequired>Nombre</nz-form-label>
+                        <nz-form-control nzErrorTip="Ingrese un valor válido">
+                          <input nz-input formControlName="name" class="input">
+                        </nz-form-control>
+                    </nz-form-item >
+                </nz-col>
+                <nz-col nzMd="12" nzXs="24">
+                    <nz-form-item>
+                        <nz-form-label [nzSpan]="24" nzRequired>Precio</nz-form-label>
+                        <nz-form-control nzErrorTip="Ingrese un valor válido">
+                          <nz-input-number formControlName="unitPrice" [nzMin]="0" [nzMax]="100" [nzStep]="1" class="input"></nz-input-number>
+                        </nz-form-control>
+                    </nz-form-item >
+                </nz-col>
+                <nz-col nzMd="12" nzXs="24" *ngIf="action == 1">
+                    <nz-form-item>
+                        <nz-form-label [nzSpan]="24" nzRequired>Proveedor</nz-form-label>
+                        <nz-form-control nzErrorTip="Ingrese un valor válido">
+                          <nz-select formControlName="supplier">
+                            <nz-option *ngFor="let s of suppliers" [nzValue]="s.supplierId" [nzLabel]="s.name"></nz-option>
+                          </nz-select>
+                        </nz-form-control>
+                    </nz-form-item >
+                </nz-col>
+                
+            </nz-row>
+          </form>
+    </ng-container>
+  </nz-modal>

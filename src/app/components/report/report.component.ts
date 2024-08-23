@@ -60,8 +60,6 @@ export class ReportComponent implements OnInit {
         for (const item of data) {
           values.push({name:item.name,data:[item.sales]});
         }
-        console.log(values);
-        
         this.chartOptions.series = values;
       }
     })
